@@ -50,15 +50,23 @@ function wagesEarnedOnDate(record, date) {
     return pay
 }
 
+function allWagesFor(record) {
+    let dates = record.timeInEvents.map(function(event) {
+        return event.date
+    })
 
+    let eachPay = dates.map(date => {return wagesEarnedOnDate(record, date)})
 
+    return eachPay.reduce(function(memo, i) { return memo + i })
+}
 
-// let testEmployee = createEmployeeRecord(["Gray", "Worm", "Security", 1])
-// createTimeInEvent(testEmployee, "2014-02-28 1400")
-// createTimeOutEvent(testEmployee, "2014-02-28 1700")
-// createTimeInEvent(testEmployee, "2014-01-28 1000")
-// createTimeOutEvent(testEmployee, "2014-01-28 1600")
-// hoursWorkedOnDate(testEmployee, "2014-02-28")
+function calculatePayroll(records) {
+    let paySum = records.map(record => {return allWagesFor(record)}).reduce(function(memo, i) { return memo + i })
+    return paySum
+}
 
-
-
+function findEmployeeByFirstName(records, name) {
+    return records.find( function(record) {
+        return record.firstName === name
+   })
+}
