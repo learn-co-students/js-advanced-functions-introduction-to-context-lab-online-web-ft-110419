@@ -64,8 +64,9 @@ function findEmployeeByFirstName(employees, firstName) {
     return employees.find( employee => employee.firstName === firstName)
 }
 
-function calculatePayRoll(employees) {
-    employees.map( (x) => {
-        console.log(x)
-    })
+function calculatePayroll(employees) {
+    const wages = employees.reduce( (total, emp) => {
+        return total + allWagesFor(emp)
+    }, 0)
+    return wages
 }
