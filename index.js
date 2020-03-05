@@ -65,7 +65,7 @@ function findEmployeeByFirstName(employees, firstName) {
 }
 
 function calculatePayRoll(employees) {
-    employees.map( (memo, x) => {
-        console.log(memo, x)
+    employees.map( (x) => {
+        console.log(x)
     })
 }
