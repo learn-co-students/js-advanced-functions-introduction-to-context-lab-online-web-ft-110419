@@ -49,7 +49,8 @@ function wagesEarnedOnDate(record, date) {
 }
 
 function allWagesFor(record) {
-    console.log(record.timeInEvents)
+    const daysWorked = record.timeOutEvents.map(event => event.date)
+    console.log(daysWorked)
     console.log(record.timeOutEvents)
     return record.timeInEvents.reduce(wagesEarnedOnDate)
 }
