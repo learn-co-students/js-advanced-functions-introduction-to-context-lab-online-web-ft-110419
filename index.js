@@ -48,12 +48,14 @@ function wagesEarnedOnDate(record, date) {
     return hours * record.payPerHour
 }
 
-function allWagesFor(record) {
-    const daysWorked = record.timeOutEvents.map(event => event.date)
-    // const newRecord = {...record, daysWorked: daysWorked}
-    const daysClockedIn = record.timeInEvents.map(event => event.date)
-    const wages = daysWorked.reduce( (record, day) => console.log(record, day))
-    // console.log(wages)
-    // console.log(record.timeOutEvents)
-    // return newRecord.daysWorked.reduce( (fill, day) => console.log(fill, day) )
+let allWagesFor = function(employee){
+    let eligibleDates = employee.timeInEvents.map(function(e){
+        return e.date
+    })
+
+    let payable = eligibleDates.reduce(function(memo, d){
+        return memo + wagesEarnedOnDate(employee, d)
+    }, 0)
+
+    return payable
 }
